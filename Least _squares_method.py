@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr):
-    plt.scatter(data[0], data[1], label="эксп.")
+def plot():
+    plt.scatter(data[0], data[1], label="Эксп")
     plt.plot(data[0], MSQ_arr, label="Лин")
-    plt.plot(data[0], STEP_arr, label="СТЕП")
+    plt.plot(data[0], STEP_arr, label="Степ")
     plt.plot(data[0], POK_arr, label="Показ")
     plt.plot(data[0], KVADR_arr, label="Квадр")
     plt.grid()
@@ -14,7 +14,7 @@ def plot(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr):
     plt.show()
 
 
-def best(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr):
+def best():
     msq, step, pok, kvadr = 0, 0, 0, 0
     for i in range(0, len(data[0])):
         msq += round((data[1][i] - MSQ_arr[i]) * (data[1][i] - MSQ_arr[i]), 2)
@@ -22,7 +22,7 @@ def best(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr):
         pok += round((data[1][i] - POK_arr[i]) * (data[1][i] - POK_arr[i]), 2)
         kvadr += round((data[1][i] - KVADR_arr[i]) * (data[1][i] - KVADR_arr[i]), 2)
 
-    d = {'Линейная': msq, 'Степенная': step, 'Показательня': pok, 'Квадратичная': kvadr}
+    d = {'Линейная': msq, 'Степенная': step, 'Показательная': pok, 'Квадратичная': kvadr}
     razdel()
     print("Линейная", msq)
     print("Степ", step)
@@ -53,18 +53,15 @@ def MSQ(arrX, arrY):
 
     razdel()
     print("МНК")
-    # print(sumX, sumY, sumX2, sumXY)
+
     arr1 = [sumX2, sumX]
     arr2 = [sumX, n]
     arr3 = [sumXY, sumY]
-    # print(arr1, arr2, arr3)
 
     mainDet = np.linalg.det(np.array([arr1, arr2]))
-    # print(round(mainDet, 4))
     det1 = np.linalg.det(np.array([arr3, arr2]))
-    # print(round(det1, 4))
     det2 = np.linalg.det(np.array([arr1, arr3]))
-    # print(round(det2, 4))
+
     a = round((det1 / mainDet), 2)
     b = round((det2 / mainDet), 2)
     print("a =", a)
@@ -75,7 +72,6 @@ def MSQ(arrX, arrY):
         newY = a * arrX[i] + b
         MSQ_Array_Y.append(round(newY, 2))
 
-    # print(MSQ_Array_Y)
     razdel()
 
     return MSQ_Array_Y
@@ -91,22 +87,18 @@ def STEP(arrX, arrY):
 
     razdel()
     print("СТЕП")
-    # print(sumX, sumY, sumX2, sumXY)
+
     arr1 = [sumX2, sumX]
     arr2 = [sumX, n]
     arr3 = [sumXY, sumY]
-    # print(arr1, arr2, arr3)
 
     mainDet = np.linalg.det(np.array([arr1, arr2]))
-    # print(round(mainDet, 4))
     det1 = np.linalg.det(np.array([arr3, arr2]))
-    # print(round(det1, 4))
     det2 = np.linalg.det(np.array([arr1, arr3]))
-    # print(round(det2, 4))
+
     a = round((det1 / mainDet), 2)
     b = round((det2 / mainDet), 2)
     print("a=", a)
-    # print("b=", b)
 
     beta = round(math.e ** b, 2)
     print("b=", beta)
@@ -116,7 +108,6 @@ def STEP(arrX, arrY):
         newY = beta * (arrX[i] ** a)
         STEP_Array_Y.append(round(newY, 2))
 
-    # print(STEP_Array_Y)
     razdel()
     return STEP_Array_Y
 
@@ -131,22 +122,18 @@ def POK(arrX, arrY):
 
     razdel()
     print("ПОК")
-    # print(sumX, sumY, sumX2, sumXY)
+
     arr1 = [sumX2, sumX]
     arr2 = [sumX, n]
     arr3 = [sumXY, sumY]
-    # print(arr1, arr2, arr3)
 
     mainDet = np.linalg.det(np.array([arr1, arr2]))
-    # print(round(mainDet, 4))
     det1 = np.linalg.det(np.array([arr3, arr2]))
-    # print(round(det1, 4))
     det2 = np.linalg.det(np.array([arr1, arr3]))
-    # print(round(det2, 4))
+
     a = round((det1 / mainDet), 2)
     b = round((det2 / mainDet), 2)
     print("a=", a)
-    # print("b=", b)
 
     beta = round(math.e ** b, 2)
     print("b=", beta)
@@ -156,7 +143,6 @@ def POK(arrX, arrY):
         newY = beta * (math.e ** (a * arrX[i]))
         POK_Array_Y.append(round(newY, 2))
 
-    # print(POK_Array_Y)
     razdel()
     return POK_Array_Y
 
@@ -174,21 +160,17 @@ def KVADR(arrX, arrY):
 
     razdel()
     print("КВАДР")
-    # print(sumX4, sumX3, sumX2, sumX, sumX2Y, sumXY, sumY)
+
     arr1 = [sumX4, sumX3, sumX2]
     arr2 = [sumX3, sumX2, sumX]
     arr3 = [sumX2, sumX, n]
     arr4 = [sumX2Y, sumXY, sumY]
-    # print(arr1, arr2, arr3, arr4)
 
     mainDet = np.linalg.det(np.array([arr1, arr2, arr3]))
-    # print(round(mainDet, 4))
     det1 = np.linalg.det(np.array([arr4, arr2, arr3]))
-    # print(round(det1, 4))
     det2 = np.linalg.det(np.array([arr1, arr4, arr3]))
-    # print(round(det2, 4))
     det3 = np.linalg.det(np.array([arr1, arr2, arr4]))
-    # print(round(det3, 4))
+
     a = round((det1 / mainDet), 2)
     b = round((det2 / mainDet), 2)
     c = round((det3 / mainDet), 2)
@@ -201,7 +183,6 @@ def KVADR(arrX, arrY):
         newY = a * pow(arrX[i], 2) + b * arrX[i] + c
         KVADR.append(round(newY, 2))
 
-    # print(KVADR)
     razdel()
     return KVADR
 
@@ -210,5 +191,5 @@ MSQ_arr = MSQ(data[0], data[1])
 STEP_arr = STEP(data[0], data[1])
 POK_arr = POK(data[0], data[1])
 KVADR_arr = KVADR(data[0], data[1])
-best(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr)
-plot(data, MSQ_arr, STEP_arr, POK_arr, KVADR_arr)
+best()
+plot()
